@@ -34,7 +34,7 @@ else()
 endif()
 
 # OPENCV
-find_package(opencv REQUIRED core videoio imgproc imgcodecs highgui)
+find_package(OpenCV REQUIRED core videoio imgproc imgcodecs highgui)
 
 # TBB
 if(NOT TBB_FOUND)

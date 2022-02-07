@@ -77,8 +77,8 @@ void drawMarkers(const boost::ptr_list<CCTag> &markers, cv::Mat &image)
     if(marker.getStatus() == status::id_reliable)
     {
       const cv::Scalar color = cv::Scalar(0, 255, 0 , 255);
-      cv::circle(image, center, radius, color, 3);
-      cv::putText(image, std::to_string(marker.id()), center, cv::FONT_HERSHEY_SIMPLEX, fontSize, color, 3);
+      cv::circle(image, center, radius, color, 3);  // 画圈
+      cv::putText(image, std::to_string(marker.id()), center, cv::FONT_HERSHEY_SIMPLEX, fontSize, color, 3);  //标ID
     }
     else
     {
