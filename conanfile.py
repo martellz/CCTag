@@ -9,7 +9,8 @@ class CCTagConan(ConanFile):
     url = "http://alicevision.github.io"
     description = "Detection of CCTag markers made up of concentric circles."
     settings = "os", "compiler", "build_type", "arch"
-    requires = "boost/1.69.0", "opencv/4.1.2@oppen/testing", "tbb/2020.1"
+    default_options = {"boost:header_only": True}
+    requires = "boost/1.69.0", "opencv/4.1.2", "tbb/2020.1"
     generators = "cmake_find_package"
     exports_sources = "src/*", "cmake/*", "CMakeLists.txt"
 

@@ -15,7 +15,7 @@ endif()
 option(CCTAG_SERIALIZE "Store all the output" OFF)
 option(CCTAG_VISUAL_DEBUG "Enable visual debug" OFF)
 option(CCTAG_NO_COUT "Disable output stream" ON)
-option(CCTAG_WITH_CUDA "Compile the library with CUDA support" ON)
+option(CCTAG_WITH_CUDA "Compile the library with CUDA support" OFF)   # turn off in case failure on android
 option(BUILD_APPS "Build the sample applications" ON)
 option(CCTAG_CUDA_CC_CURRENT_ONLY "Set to on to build only for the current machine's CC" OFF)
 option(CCTAG_NVCC_WARNINGS "Switch on several additional warnings for CUDA nvcc." OFF)
@@ -73,21 +73,21 @@ if(APPLE)
   SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE) # LC_RPATH for CUDA and OpenCV etc written into executable
 endif(APPLE)
 
-# FIND BOOST
-set(BOOST_REQUIRED_COMPONENTS "atomic;chrono;date_time;filesystem;program_options;serialization;system;thread;timer")
-if(WIN32)
-  set(BOOST_REQUIRED_COMPONENTS "${BOOST_REQUIRED_COMPONENTS};stacktrace_windbg")
-else()
-  set(BOOST_REQUIRED_COMPONENTS "${BOOST_REQUIRED_COMPONENTS};stacktrace_basic")
-endif()
+# # FIND BOOST
+# set(BOOST_REQUIRED_COMPONENTS "atomic;chrono;date_time;filesystem;program_options;serialization;system;thread;timer")
+# if(WIN32)
+#   set(BOOST_REQUIRED_COMPONENTS "${BOOST_REQUIRED_COMPONENTS};stacktrace_windbg")
+# else()
+#   set(BOOST_REQUIRED_COMPONENTS "${BOOST_REQUIRED_COMPONENTS};stacktrace_basic")
+# endif()
 
-if(BUILD_TESTS)
-  set(BOOST_REQUIRED_COMPONENTS "${BOOST_REQUIRED_COMPONENTS};unit_test_framework")
-  enable_testing()
-  include(BoostTestHelper)
-endif()
+# if(BUILD_TESTS)
+#   set(BOOST_REQUIRED_COMPONENTS "${BOOST_REQUIRED_COMPONENTS};unit_test_framework")
+#   enable_testing()
+#   include(BoostTestHelper)
+# endif()
 
-find_package(Boost 1.66.0 REQUIRED COMPONENTS ${BOOST_REQUIRED_COMPONENTS})
+find_package(Boost REQUIRED)
 
 if(BUILD_SHARED_LIBS)
   if(WIN32)
